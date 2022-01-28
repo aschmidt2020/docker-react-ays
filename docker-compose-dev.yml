@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  react-app-dev:
+    container_name: react-app-dev
+    build: 
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - '/app/node_modules'
+      - './:/app'
+    ports:
+      - "3002:3000"
+  
+  docker-react-test:
+    container_name: docker-react-test
+    image: docker-react-ays_react-app-dev
+    volumes:
+      - '/app/node_modules'
+      - './:/app'
+    command: [ "npm", "run", "test"]

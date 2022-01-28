@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  react-app:
+    container_name: react-app
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '/app/node_modules'
+      - './:/app'
+    ports:
+      - "8083:80"
+      - "80:80"

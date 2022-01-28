@@ -1,0 +1,16 @@
+#base image
+FROM node:alpine
+
+#workdir
+WORKDIR /app
+
+#install dependencies
+COPY package.json/ ./
+RUN npm install
+RUN npm install react-scripts@4.0.3 -g
+
+#copy files
+COPY ./ ./
+
+#default command
+CMD ["npx", "nodemon", "--watch", "src", "--exec", "npm", "start"]
