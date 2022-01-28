@@ -11,7 +11,7 @@ WORKDIR /app
 #install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm ci
+RUN npm install
 RUN npm install react-scripts@5.0.0 -g
 
 #copy app
@@ -23,7 +23,7 @@ RUN npm run build
 #*****PRODUCTION
 #copies from build env
 FROM nginx:stable-alpine as prod
-COPY --from=build /app/build /usr/shar/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
 #allows react router to be used with nginx
 # COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
